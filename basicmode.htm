@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	body 
+	{
+    		background: url("cricketstadium.jpg");
+		background-size: 1370px 700px;
+   		background-repeat: no-repeat;
+    		padding-top: 40px;
+		background-attachment: fixed;
+	}
+	ul
+	{
+		position:fixed;
+		top:300px;
+		left:410px;
+	}
+	ul li
+	{
+		display:inline-block;
+		font-family:"Courier","Arial",sans-serif;
+		border:solid grey 2px;
+		margin-left:10px;
+		padding-left:20px;
+		padding-right:20px;
+		border-radius:3px;
+		text-align:center;
+		background-color:white;
+       	}
+	#ipl{
+		font-family:latin;
+		font-size:100px;
+		position:fixed;
+		top:-80px;
+		left:500px;
+	}	
+	#match 
+	{
+		font-family:monotype corsiva;
+		font-size:40px;
+		position:fixed;
+		top:100px;
+		left:600px;
+	}
+	#venue
+	{ 
+		font-family:harrington;
+		font-size:20px;
+		text-align:center;
+		position:fixed;
+		top:180px;
+		left:490px;
+	}	
+	#time
+	{
+		font-family:harrington;
+		font-size:20px;
+		position:fixed;
+		top:270px;
+		left:630px;
+	}
+
+	#rcb
+	{
+		position:fixed;
+		top:60px;
+		left:200px;
+	}
+
+	#srh
+	{
+		position:fixed;
+		top:60px;
+		right:200px;
+	}
+
+</style>
+</head>
+
+<body onload="setInterval(timer,1000)">
+<!-- CountDown Timer for IPL Finals-->
+	
+		<p id="ipl"> IPL T-20 </p>
+		<p id="match"> FINALS </p>
+		<p id="venue"><b>3rd June <br> M. Chinnaswamy Stadium , Bengaluru </b></p>
+		<p id="time"><b> Time Left :- </b></p>
+
+
+
+		<div id="rcb">
+      			<img src="rcblogo.jpg" alt="Royal Challengers Bangalore" width="170" height="200">
+  		</div>
+	
+		<div id="srh">
+    			<img src="srhlogo.jpg" alt="Sunrisers Hyderabad" width="170" height="200">
+  		</div>
+	        
+
+  		<div>
+		
+		<p id="demo"></p>
+		<ul id="ipltimer">
+			<li id="days"></li>
+			<li id="hours"></li>
+			<li id="minutes"></li>
+			<li id="seconds"></li>
+		</ul>
+		
+	
+
+		
+	</div>
+
+
+	<script>
+	function timer()
+	{ 
+		var today=new Date();
+		var specialday=new Date(2016,5,2,22,30,0,0);
+		var x=specialday.getTime() - today.getTime();//x is the difference between the dates in milliseconds
+		var diff=new Date(x);						 //diff is a date which is x milliseconds ahead from 01/01/1970 00:00:00
+		var xmonth=diff.getUTCMonth();
+		var xday=diff.getUTCDate();
+		var xhour=diff.getUTCHours();				
+		var xmin=diff.getUTCMinutes();
+		var xsec=diff.getUTCSeconds();
+		if(xmonth==1)
+			xday=xday+31;
+		if(xmin<0)
+		{
+			xmin=xmin+60;
+			xhour=xhour-1;
+		}
+		if(xhour<0)
+		{
+			xhour=xhour+24;
+			xday=xday-1;
+		}
+		
+		if (today >= specialday)
+		{
+			document.getElementById("ipl").innerHTML="IPL Final";
+			document.getElementById("ipltimer").style.backgroundImage='url("cricketstadium.jpg")';
+			document.getElementById("demo").innerHTML=specialday.getTime() + " "+today.getTime() + " "+x + diff;
+			document.getElementById("days").innerHTML= "";
+			document.getElementById("hours").innerHTML= "";
+			document.getElementById("minutes").innerHTML= "";
+			document.getElementById("seconds").innerHTML= "";
+		}
+		else
+		{
+			document.getElementById("days").innerHTML= xday + "<br>Days";
+			document.getElementById("hours").innerHTML= xhour + "<br>Hours";
+			document.getElementById("minutes").innerHTML=xmin + "<br>Minutes";
+			document.getElementById("seconds").innerHTML=xsec + "<br>Seconds";
+		}
+	}
+	</script>
+</body>
+
+</html>
